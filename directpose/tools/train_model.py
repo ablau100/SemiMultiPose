@@ -168,7 +168,7 @@ logger.info("Running with config:\n{}".format(cfg))
     
 # run model with only standard loss 
 model_weight_part1 = ''
-max_iter_part1 = int(max_iters * .2) #* 10
+max_iter_part1 = round(int(max_iters * .2), -3) 
 
 cfg.merge_from_list(['MODEL.WEIGHT', model_weight_part1, \
         'SOLVER.MAX_ITER', max_iter_part1, \
@@ -179,13 +179,12 @@ model_part1 = train(cfg, local_rank, distributed, 'standard', alpha, beta, False
 # run model with incorperating fusion loss on labeled frames
 load_part1 = (7 - len(str(max_iter_part1))) * '0' + str(max_iter_part1)
 model_weight_part2 = out_dir + '/model_' + load_part1 + '.pth'
-max_iter_part2 = max_iter_part1 + int(max_iters * .2)# * 10
+max_iter_part2 = max_iter_part1 * 2
 
 cfg.merge_from_list(['DATALOADER.NUM_WORKERS', 2, \
         'MODEL.WEIGHT', model_weight_part2, \
         'SOLVER.MAX_ITER', max_iter_part2, \
         ])
-print('start m2')
 model_part2 = train(cfg, local_rank, distributed, 'combined', alpha, beta, False, True)
 
 # run model with incorperating fusion loss on unlabeled frames
@@ -197,7 +196,6 @@ cfg.merge_from_list(['DATALOADER.NUM_WORKERS', 2, \
         'MODEL.WEIGHT', model_weight_part3, \
         'SOLVER.MAX_ITER', max_iter_part3, \
         ])
-print('start m3')
 model_part3 = train(cfg, local_rank, distributed, 'combined', alpha, beta, True, True)
 
 
