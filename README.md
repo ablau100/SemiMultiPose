@@ -56,6 +56,6 @@ arg3: alpha
 
 arg4: beta
 
-arg5: number of iterations
+arg5: number of iterations (should be a multiple of 1k)
 
 Make sure to define the keypoints for the animal you want to model in directpose/structures and to add the paths to your annotation files directpose/config/paths_catalog.py.
