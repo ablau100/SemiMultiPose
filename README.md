@@ -47,10 +47,15 @@ python setup.py build develop
 
 ## Instructions to train model
 Call train_model.py in direstpose/tools  with args
+
 arg1: output directory
+
 arg2: datatype (usually the name of the animal)
+
 arg3: alpha
+
 arg4: beta
+
 arg5: number of iterations
 
 Make sure to define the keypoints for the animal you want to model in directpose/structures and to add the paths to your annotation files directpose/config/paths_catalog.py.
