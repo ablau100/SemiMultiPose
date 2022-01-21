@@ -56,7 +56,7 @@ Call ./train_model.sh in direstpose/tools  with args
 
 -b: beta (optional, default is 0.1)
 
--n: number of iterations (should be a multiple of 1k, optional, default is 40000)
+-n: number of iterations (should be a multiple of 1k; optional, default is 40000)
 
 ## Instructions to add new datatype
 
