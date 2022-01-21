@@ -168,7 +168,7 @@ logger.info("Running with config:\n{}".format(cfg))
     
 # run model with only standard loss 
 model_weight_part1 = ''
-max_iter_part1 = round(int(max_iters * .2), -3) 
+max_iter_part1 = round(int(max_iters * .1), -3) 
 
 cfg.merge_from_list(['MODEL.WEIGHT', model_weight_part1, \
         'SOLVER.MAX_ITER', max_iter_part1, \

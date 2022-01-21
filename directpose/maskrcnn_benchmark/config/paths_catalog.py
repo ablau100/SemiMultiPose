@@ -7,6 +7,7 @@ import os
 class DatasetCatalog(object):
     DATA_DIR = "datasets"
     DATASETS = {
+        # COCO datasets
         "coco_2017_train": {
             "img_dir": "coco/train2017",
             "ann_file": "coco/annotations/instances_train2017.json"
@@ -15,33 +16,53 @@ class DatasetCatalog(object):
             "img_dir": "coco/val2017",
             "ann_file": "coco/annotations/instances_val2017.json"
         },
-
-        "cityscapes_fine_instanceonly_seg_train_cocostyle": {
-            "img_dir": "cityscapes/images",
-            "ann_file": "cityscapes/annotations/instancesonly_filtered_gtFine_train.json"
+        "coco_train": {
+            "img_dir": "coco/images",
+            "ann_file": "coco/ann_3/person_keypoints_train2014.json"
         },
-        "cityscapes_fine_instanceonly_seg_val_cocostyle": {
-            "img_dir": "cityscapes/images",
-            "ann_file": "cityscapes/annotations/instancesonly_filtered_gtFine_val.json"
+        "coco_val": {
+            "img_dir": "coco/images",
+            "ann_file": "coco/ann_3/person_keypoints_val2014.json"
         },
-        "cityscapes_fine_instanceonly_seg_test_cocostyle": {
-            "img_dir": "cityscapes/images",
-            "ann_file": "cityscapes/annotations/instancesonly_filtered_gtFine_test.json"
+        # monkey datasets
+        "mon_val_train_coco": {
+            "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/mon_train.json",
+            "kfun": "MonkeyKeypoints"
         },
-            # monkry data
+        "mon_val_test_coco": {
+            "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/mon_test.json",
+            "kfun": "MonkeyKeypoints"
+        },
         "monkey_train_cocostyle": {
             "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
-            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_train_v3.json",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_train_v5.json",
             "kfun": "MonkeyKeypoints"
         },
         "monkey_val_cocostyle": {
             "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_val_v5.json",
+            "kfun": "MonkeyKeypoints"
+        },
+        "monkey_train_cocostyle_semi": {
+            "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_train_v3.json",
+            "kfun": "MonkeyKeypoints"
+        },
+        "monkey_val_cocostyle_semi": {
+            "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
             "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_val_v3.json",
+            "kfun": "MonkeyKeypoints"
+        },
+        "monkey_val_cocostyle_v5": {
+            "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_val_v5.json",
             "kfun": "MonkeyKeypoints"
         },
         "monkey_test_cocostyle": {
             "img_dir": "/home/bsb2144/directpose/tools/datasets/monkey/images",
-            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_train.json",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_val_v5.json",
             "kfun": "MonkeyKeypoints"
         },
         "monkey_un_cocostyle": {
@@ -49,7 +70,7 @@ class DatasetCatalog(object):
             "ann_file": "/home/bsb2144/directpose/tools/datasets/monkey/annotations/monkey_un_v3.json",
             "kfun": "MonkeyKeypoints"
         },
-        #all fly (full for vid test)
+        # fly datasets
          "fly_all_train_cocostyle": {
             "img_dir": "fly/train",
             "ann_file": "/home/bsb2144/directpose/tools/datasets/fly/annotations/train_drosophila_annotations2020.json",
@@ -60,7 +81,6 @@ class DatasetCatalog(object):
             "ann_file": "/home/bsb2144/directpose/tools/datasets/fly/annotations/fly_vid_un.json",
             "kfun": "FlyKeypoints"
         },
-        #fly data
         "fly_train_cocostyle": {
             "img_dir": "fly/train",
             "ann_file": "/home/bsb2144/directpose/tools/datasets/fly/annotations/fly_train_v2.json",
@@ -81,7 +101,7 @@ class DatasetCatalog(object):
             "ann_file": "/home/bsb2144/directpose/tools/datasets/fly/annotations/fly_un.json",
             "kfun": "FlyKeypoints"
         },
-        # pup data
+        # pup datasets
         "pup_train_cocostyle": {
             "img_dir": "pup/images",
             "ann_file": "/home/bsb2144/directpose/tools/datasets/pup/annotations/pup_train_vf.json",
@@ -97,23 +117,6 @@ class DatasetCatalog(object):
             "ann_file": "/home/bsb2144/directpose/tools/datasets/pup/annotations/pup_train_vf.json",
             "kfun": "PupKeypoints"
         },
-        #pup data padded
-        "pup_padded_train_cocostyle": {
-            "img_dir": "pup/images",
-            "ann_file": "/home/bsb2144/directpose/tools/datasets/pup/annotations/pup_train_padded.json",
-            "kfun": "PupKeypoints"
-        }, 
-        #pup data only 3 kps
-        "pup_full_train_cocostyle": {
-            "img_dir": "pup/images",
-            "ann_file": "/home/bsb2144/directpose/tools/datasets/pup/annotations/pups_with_3_kps.json",
-            "kfun": "PupKeypoints"
-        }, 
-        "pup_full_val_cocostyle": {
-            "img_dir": "/home/bsb2144/directpose/tools/datasets/pup/images",
-            "ann_file": "/home/bsb2144/directpose/tools/datasets/pup/annotations/pup_val_3_area.json",
-            "kfun": "PupKeypoints"
-        }, 
         #fake pup data only 3 kps
         "pup_fake_train_cocostyle": {
             "img_dir": "pup_fake/images",
@@ -139,14 +142,14 @@ class DatasetCatalog(object):
             "kfun": "PupKeypoints"
         },
         # bee
-        "bee_train_cocostyle": {
+        "bee_train_cocostyle_original": {
             "img_dir": "bee/train",
             "ann_file": "bee/annotations/train_bee_annotations2018_nondup.json",
             "kfun": "BeeKeypoints"
         },
         "bee_val_cocostyle": {
             "img_dir": "bee/validation",
-            "ann_file": "/home/bsb2144/directpose/tools/datasets/bee/annotations/validation-Copy1.json",
+            "ann_file": "/home/bsb2144/directpose/tools/datasets/bee/annotations/validation.json",
             "kfun": "BeeKeypoints"
         },
         "bee_test_cocostyle": {
@@ -154,12 +157,18 @@ class DatasetCatalog(object):
             "ann_file": "bee/annotations/train_bee_annotations2018_nondup.json",
             "kfun": "BeeKeypoints"
         },
-        # bee resized 5 v1
-        "bee_train_cocostyle_small_5_v1": {
+        # bee test train file !!!!!!!!!!!!!!!!!
+        "bee_train_cocostyle": {
             "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_5_v1.json",
+            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_5_v3.json",
             "kfun": "BeeKeypoints"
         },
+        "bee_unlabeled_cocostyle": {
+            "img_dir": "bee_rescale/train",
+            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_5v3.json",
+            "kfun": "BeeKeypoints"
+        },
+        ### END TEST !!!!!!!!!!!!!
         "bee_val_cocostyle_small_5_v1": {
             "img_dir": "bee_rescale/validation",
             "ann_file": "bee_rescale/annotations/validation.json",
@@ -168,12 +177,6 @@ class DatasetCatalog(object):
         "bee_test_cocostyle_small_5_v1": {
             "img_dir": "bee_rescale/train",
             "ann_file": "bee_rescale/annotations/train_bee_annotations2018_5_v1.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 5 v1
-        "bee_train_cocostyle_small_un_5v1": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_5v1.json",
             "kfun": "BeeKeypoints"
         },
         "bee_val_cocostyle_small_un_5v1": {
@@ -192,60 +195,6 @@ class DatasetCatalog(object):
             "ann_file": "bee_rescale/annotations/train_bee_annotations2018_5_v2.json",
             "kfun": "BeeKeypoints"
         },
-        # bee resized non labeled for 5 v2
-        "bee_train_cocostyle_small_un_5v2": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_5v2.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized 5 v3
-        "bee_train_cocostyle_small_5_v3": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_5_v3.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 5 v3
-        "bee_train_cocostyle_small_un_5v3": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_5v3.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized 5 v4
-        "bee_train_cocostyle_small_5_v4": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_5_v4.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 5 v4
-        "bee_train_cocostyle_small_un_5v4": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_5v4.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized 5 v5
-        "bee_train_cocostyle_small_5_v5": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_5_v5.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 5 v5
-        "bee_train_cocostyle_small_un_5v5": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_5v5.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 5 v5
-        "bee_train_cocostyle_small_un_5v5": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_5v5.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized 25 v1
-        "bee_train_cocostyle_small_25_v1": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_25_v1.json",
-            "kfun": "BeeKeypoints"
-        },
         # bee resized non labeled for 25 v1
         "bee_train_cocostyle_small_un_25v1": {
             "img_dir": "bee_rescale/train",
@@ -262,42 +211,6 @@ class DatasetCatalog(object):
         "bee_train_cocostyle_small_un_25v2": {
             "img_dir": "bee_rescale/train",
             "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_25v2.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized 25 v3
-        "bee_train_cocostyle_small_25_v3": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_25_v3.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 25 v3
-        "bee_train_cocostyle_small_un_25v3": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_25v3.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized 25 v4
-        "bee_train_cocostyle_small_25_v4": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_25_v4.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 25 v4
-        "bee_train_cocostyle_small_un_25v4": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_25v4.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized 25 v5
-        "bee_train_cocostyle_small_25_v5": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_25_v5.json",
-            "kfun": "BeeKeypoints"
-        },
-        # bee resized non labeled for 25 v5
-        "bee_train_cocostyle_small_un_25v5": {
-            "img_dir": "bee_rescale/train",
-            "ann_file": "bee_rescale/annotations/train_bee_annotations2018_unan_for_25v5.json",
             "kfun": "BeeKeypoints"
         },
         # bee resized
@@ -378,22 +291,6 @@ class DatasetCatalog(object):
         "beeua_test_cocostyle": {
             "img_dir": "bee/train",
             "ann_file": "bee/annotations/train_bee_annotations2018_unan2.json",
-            "kfun": "BeeKeypoints"
-        },
-        #bee 10 high nc combo
-        "bee_train_cocostyle_10": {
-            "img_dir": "bee/train",
-            "ann_file": "bee/annotations/train_bee_annotations2018_nw_3.json",
-            "kfun": "BeeKeypoints"
-        },
-        "bee_val_cocostyle_10": {
-            "img_dir": "bee/validation",
-            "ann_file": "bee/annotations/validation.json",
-            "kfun": "BeeKeypoints"
-        },
-        "bee_test_cocostyle_10": {
-            "img_dir": "bee/train",
-            "ann_file": "bee/annotations/train_bee_annotations2018_nw_3.json",
             "kfun": "BeeKeypoints"
         },
         # drosophila
