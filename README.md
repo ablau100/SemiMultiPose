@@ -46,16 +46,22 @@ python setup.py build develop
 
 
 ## Instructions to train model
-Call train_model.py in direstpose/tools  with args
+Call ./train_model.sh in direstpose/tools  with args
 
-arg1: output directory
+-o: output directory
 
-arg2: datatype (usually the name of the animal)
+-d: datatype (usually the name of the animal)
 
-arg3: alpha
+-a: alpha (optional, default is 0.01)
 
-arg4: beta
+-b: beta (optional, default is 0.1)
 
-arg5: number of iterations (should be a multiple of 1k)
+-n: number of iterations (should be a multiple of 1k, optional, default is 40000)
 
-Make sure to define the keypoints for the animal you want to model in directpose/structures and to add the paths to your annotation files directpose/config/paths_catalog.py.
+## Instructions to add new datatype
+
+Define the keypoints for the animal you want to model in directpose/structures
+
+Add the paths to your annotation files directpose/config/paths_catalog.py.
+
+Add new datatype info to directpose/modeling/heatmap.py and directpose/modeling/rpn/fcos/fcos.py
