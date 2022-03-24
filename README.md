@@ -46,17 +46,9 @@ python setup.py build develop
 
 
 ## Instructions to train model
-Call ./train_model.sh in direstpose/tools  with args
+Call ./train_model.py in direstpose/tools  with args
 
--o: output directory
-
--d: datatype (usually the name of the animal)
-
--a: alpha (optional, default is 0.01)
-
--b: beta (optional, default is 0.1)
-
--n: number of iterations (should be a multiple of 1k; optional, default is 40000)
+--path_to_config: path to config file
 
 ## Instructions to add new datatype
 
