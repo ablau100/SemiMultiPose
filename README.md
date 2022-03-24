@@ -50,6 +50,8 @@ Call ./train_model.py in direstpose/tools  with args
 
 --path_to_config: path to config file
 
+(example at SemiMultiPose/directpose/maskrcnn_benchmark/paths/configs/model_config.yaml)
+
 ## Instructions to add new datatype
 
 Define the keypoints for the animal you want to model in directpose/structures
